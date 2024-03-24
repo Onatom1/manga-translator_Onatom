@@ -4,10 +4,9 @@ mss
 numpy
 opencv_python
 Pillow
-Pillow
-Pillow
 PyAutoGUI
 pytesseract
 ultralytics
 Werkzeug
 deep-translator
+manga-ocr
