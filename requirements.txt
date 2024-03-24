@@ -10,3 +10,4 @@ ultralytics
 Werkzeug
 deep-translator
 manga-ocr
+easyocr
