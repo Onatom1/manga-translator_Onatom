@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload de Imagem</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row mt-5">
+            <div class="col-md-6 offset-md-3">
+                <h2 class="text-center">Processamento de Imagem</h2>
+                <hr>
+                <form action="/process_image" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="file">Selecione uma imagem:</label>
+                        <input type="file" name="file" id="file" class="form-control" onchange="loadFile(event)">
+                    </div>
+                    <img id="output" width="100%" height="auto" />
+                    <div class="form-group">
+                        <label for="language">Selecione o idioma original:</label><br>
+                        <input type="radio" id="jp" name="language" value="ja" checked>
+                        <label for="jp">Japonês</label><br>
+                        <input type="radio" id="en" name="language" value="en">
+                        <label for="en">Inglês</label><br>
+                    </div>
+                    <br>
+                    <button type="submit" class="btn btn-primary">Traduzir</button>
+                </form>
+                {% if img_data %}
+                <h2 class="text-center">Imagem Traduzida</h2>
+                <img src="data:image/jpeg;base64,{{img_data}}" width="100%" height="auto" />
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <script>
+        var loadFile = function (event) {
+            var output = document.getElementById('output');
+            output.src = URL.createObjectURL(event.target.files[0]);
+            output.onload = function () {
+                URL.revokeObjectURL(output.src) // free memory
+            }
+        };
+    </script>
+</body>
+
+</html>
